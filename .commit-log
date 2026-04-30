@@ -44,3 +44,4 @@
 # feat: build Checkout page - LocusCheckout embedded component
 # feat: add what-you-get breakdown before payment
 # feat: add dev mode fallback when checkout unavailable
+# feat: add receipt config with line items to checkout session
