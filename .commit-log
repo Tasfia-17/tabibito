@@ -1,3 +1,4 @@
 # feat: add Fredoka One and Nunito Google Fonts
 # feat: add NotoColorEmoji font for cross-platform emoji support
 # feat: implement CSS custom property palette system (--c1/--c2/--c3)
+# feat: add animated-bg gradient with bgShift keyframe
