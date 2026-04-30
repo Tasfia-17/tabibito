@@ -12,10 +12,7 @@
       "dockerfile": "Dockerfile",
       "port": 8080,
       "cpu": 256,
-      "memory": 512,
-      "buildArgs": {
-        "VITE_API_URL": "${{api.URL}}"
-      }
+      "memory": 512
     }
   }
 }

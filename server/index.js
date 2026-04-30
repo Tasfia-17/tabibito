@@ -176,8 +176,8 @@ app.post('/api/checkout/create', async (req, res) => {
       {
         amount: '0.50',
         description: `Tabibito — ${days}-day ${destination}, ${country} trip plan`,
-        successUrl: 'http://localhost:5173/dashboard',
-        cancelUrl: 'http://localhost:5173/',
+        successUrl: 'https://svc-molqgm3yyf31x8jg.beta.buildwithlocus.com/dashboard',
+        cancelUrl: 'https://svc-molqgm3yyf31x8jg.beta.buildwithlocus.com/',
         metadata: { destination, country, days, budget },
         receiptConfig: {
           enabled: true,
@@ -263,11 +263,11 @@ app.post('/api/plan-trip', async (req, res) => {
   const { destination, days, budget, interests, translateLang = 'JA', weatherSuffix = 'JP', country = 'Japan' } = req.body;
   try {
     const [weatherRes, itineraryRes] = await Promise.allSettled([
-      axios.post('http://localhost:3001/api/weather', { city: destination, weatherSuffix }),
-      axios.post('http://localhost:3001/api/itinerary', { destination, days, budget, interests, country }),
+      axios.post('http://localhost:8080/api/weather', { city: destination, weatherSuffix }),
+      axios.post('http://localhost:8080/api/itinerary', { destination, days, budget, interests, country }),
     ]);
 
-    const translationsRes = await axios.post('http://localhost:3001/api/translate', {
+    const translationsRes = await axios.post('http://localhost:8080/api/translate', {
       translateLang,
       phrases: [
         'Where is the train station?',
