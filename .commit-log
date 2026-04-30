@@ -21,3 +21,4 @@
 # feat: build PageWrapper with Framer Motion page transitions
 # feat: build Landing page - country selector grid
 # feat: add SparkLine component with animated bars
+# feat: add CountryCard with breathing emoji + floor reflection
