@@ -43,3 +43,4 @@
 # feat: add network status indicator with pulse animation
 # feat: build Checkout page - LocusCheckout embedded component
 # feat: add what-you-get breakdown before payment
+# feat: add dev mode fallback when checkout unavailable
