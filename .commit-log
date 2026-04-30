@@ -31,3 +31,4 @@
 # feat: build itinerary card with day tabs
 # feat: add AnimatePresence day transition in itinerary
 # feat: add Mapbox walking distances display
+# feat: build translations card with tap-to-copy
