@@ -297,7 +297,7 @@ app.post('/api/plan-trip', async (req, res) => {
 });
 
 // SPA fallback — serve React for all non-API routes
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
