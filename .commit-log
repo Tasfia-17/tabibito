@@ -17,3 +17,4 @@
 # feat: add per-country palettes - Morocco orange, India violet
 # feat: implement applyPalette() CSS custom property swap
 # feat: build TfxOverlay component - diagonal sweep transition
+# feat: build Navbar with palette-aware active state
