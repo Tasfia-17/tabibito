@@ -48,3 +48,4 @@
 # feat: wire Landing -> /checkout -> /dashboard flow
 # feat: add screenshots directory with UI captures
 # feat: deploy to Build with Locus - single combined service
+# docs: add README with architecture, stack, and live URL
