@@ -1,10 +1,10 @@
-# Tabibito 旅人 — AI Travel Planner
+# Tabibito 旅人 - AI Travel Planner
 
-> One message. Complete trip prep — weather, itinerary, translations, and a global travel card.
+> One message. Complete trip prep - weather, itinerary, translations, and a global travel card.
 
 **Live:** https://svc-molr3ae0khconwzx.beta.buildwithlocus.com
 
-Built for the [Paygentic Hackathon Week 3](https://paygentic-week3.devfolio.co) — Checkout with Locus track.
+Built for the [Paygentic Hackathon Week 3](https://paygentic-week3.devfolio.co) - Checkout with Locus track.
 
 ---
 
@@ -17,7 +17,7 @@ Type your destination. Pay 0.50 USDC via Locus Checkout. Get:
 - 🚶 **Walking distances** between stops (Mapbox)
 - 🔤 **Translated phrases** in the local language (DeepL)
 - 🎒 **Packing list** based on weather
-- 💳 **Global travel card** — virtual Visa loaded with USDC (Laso Finance)
+- 💳 **Global travel card** - virtual Visa loaded with USDC (Laso Finance)
 - 🏨 **Hotel search** via AI browser agent (Browser Use)
 
 ## Countries supported
@@ -47,10 +47,10 @@ Type your destination. Pay 0.50 USDC via Locus Checkout. Get:
 ## Run locally
 
 ```bash
-# Terminal 1 — backend
+# Terminal 1 - backend
 cd server && node index.js
 
-# Terminal 2 — frontend
+# Terminal 2 - frontend
 npm run dev
 ```
 
