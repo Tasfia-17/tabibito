@@ -29,3 +29,4 @@
 # feat: add 5-day forecast grid to weather card
 # feat: add packing suggestion from temperature
 # feat: build itinerary card with day tabs
+# feat: add AnimatePresence day transition in itinerary
