@@ -19,3 +19,4 @@
 # feat: build TfxOverlay component - diagonal sweep transition
 # feat: build Navbar with palette-aware active state
 # feat: build PageWrapper with Framer Motion page transitions
+# feat: build Landing page - country selector grid
