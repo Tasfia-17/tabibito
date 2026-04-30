@@ -46,3 +46,4 @@
 # feat: add dev mode fallback when checkout unavailable
 # feat: add receipt config with line items to checkout session
 # feat: wire Landing -> /checkout -> /dashboard flow
+# feat: add screenshots directory with UI captures
