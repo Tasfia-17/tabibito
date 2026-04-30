@@ -20,3 +20,4 @@
 # feat: build Navbar with palette-aware active state
 # feat: build PageWrapper with Framer Motion page transitions
 # feat: build Landing page - country selector grid
+# feat: add SparkLine component with animated bars
