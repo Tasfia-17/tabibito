@@ -47,3 +47,4 @@
 # feat: add receipt config with line items to checkout session
 # feat: wire Landing -> /checkout -> /dashboard flow
 # feat: add screenshots directory with UI captures
+# feat: deploy to Build with Locus - single combined service
