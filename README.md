@@ -1,16 +1,79 @@
-# React + Vite
+# Tabibito 旅人 — AI Travel Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> One message. Complete trip prep — weather, itinerary, translations, and a global travel card.
 
-Currently, two official plugins are available:
+**Live:** https://svc-molr3ae0khconwzx.beta.buildwithlocus.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Built for the [Paygentic Hackathon Week 3](https://paygentic-week3.devfolio.co) — Checkout with Locus track.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What it does
 
-## Expanding the ESLint configuration
+Type your destination. Pay 0.50 USDC via Locus Checkout. Get:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🌤️ **Live weather** + 5-day forecast (OpenWeather)
+- 🗺️ **AI itinerary** with real locations (Gemini)
+- 🚶 **Walking distances** between stops (Mapbox)
+- 🔤 **Translated phrases** in the local language (DeepL)
+- 🎒 **Packing list** based on weather
+- 💳 **Global travel card** — virtual Visa loaded with USDC (Laso Finance)
+- 🏨 **Hotel search** via AI browser agent (Browser Use)
+
+## Countries supported
+
+🇯🇵 Japan · 🇹🇭 Thailand · 🇮🇹 Italy · 🇫🇷 France · 🇲🇦 Morocco · 🇮🇳 India
+
+## Tech stack
+
+| Layer | Tech |
+|---|---|
+| Frontend | React + Vite + Tailwind + Framer Motion |
+| Backend | Express.js |
+| Payments | Locus Checkout (`@withlocus/checkout-react`) |
+| Travel card | Laso Finance (x402 / USDC) |
+| AI | Gemini 2.0 Flash (via Locus wrapped API) |
+| Weather | OpenWeather (via Locus wrapped API) |
+| Maps | Mapbox (via Locus wrapped API) |
+| Translation | DeepL (via Locus wrapped API) |
+| Browser automation | Browser Use (via Locus wrapped API) |
+| Deployment | Build with Locus |
+
+## Screenshots
+
+![UI Preview](screenshots/ui-02-app-preview.png)
+![Hackathon](screenshots/ui-01-hackathon-submission.png)
+
+## Run locally
+
+```bash
+# Terminal 1 — backend
+cd server && node index.js
+
+# Terminal 2 — frontend
+npm run dev
+```
+
+Open http://localhost:5173
+
+## How the checkout works
+
+1. User fills trip form → clicks submit
+2. Server creates a Locus Checkout session ($0.50 USDC)
+3. `LocusCheckout` component renders the payment UI
+4. On payment confirmed → trip plan generates automatically
+5. AI agents can pay the same checkout programmatically
+
+## Architecture
+
+```
+User → React frontend → /checkout (Locus Checkout)
+                      → /dashboard (plan-trip orchestrator)
+                           ├── OpenWeather (weather)
+                           ├── Gemini (itinerary)
+                           │     └── Mapbox (walking distances)
+                           └── DeepL (translations)
+
+/card → Laso Finance (virtual Visa card via USDC)
+/accommodation → Browser Use (hotel search)
+```
