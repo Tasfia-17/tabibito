@@ -38,3 +38,4 @@
 # feat: add cancel intl card with full refund flow
 # feat: add US card instant flow with 2.5s polling
 # feat: build Accommodation page - Browser Use hotel search
+# feat: add animated progress bar during Browser Use task
