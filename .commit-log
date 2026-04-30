@@ -34,3 +34,4 @@
 # feat: build translations card with tap-to-copy
 # feat: build packing list with progress bar
 # feat: build PaymentCard page - virtual Visa 3D flip
+# feat: add international card (Laso /order-intl-card) with 24h queue UI
