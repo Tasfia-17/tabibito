@@ -1,10 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve React static files
+const publicDir = path.join(__dirname, 'public');
+app.use(express.static(publicDir));
 
 const LOCUS_KEY = 'claw_dev__mYSE9qLqytTQWF0IGokmpxzEn1sw9Kb';
 const LOCUS_API = 'https://beta-api.paywithlocus.com/api';
@@ -14,6 +19,8 @@ const locus = axios.create({
   baseURL: LOCUS_API,
   headers: { Authorization: `Bearer ${LOCUS_KEY}` },
 });
+
+const SELF = `http://localhost:${process.env.PORT || 8080}`;
 
 // ── Balance ─────────────────────────────────────────────────────────────────
 app.get('/api/balance', async (req, res) => {
@@ -263,11 +270,11 @@ app.post('/api/plan-trip', async (req, res) => {
   const { destination, days, budget, interests, translateLang = 'JA', weatherSuffix = 'JP', country = 'Japan' } = req.body;
   try {
     const [weatherRes, itineraryRes] = await Promise.allSettled([
-      axios.post('http://localhost:8080/api/weather', { city: destination, weatherSuffix }),
-      axios.post('http://localhost:8080/api/itinerary', { destination, days, budget, interests, country }),
+      axios.post(`${SELF}/api/weather`, { city: destination, weatherSuffix }),
+      axios.post(`${SELF}/api/itinerary`, { destination, days, budget, interests, country }),
     ]);
 
-    const translationsRes = await axios.post('http://localhost:8080/api/translate', {
+    const translationsRes = await axios.post(`${SELF}/api/translate`, {
       translateLang,
       phrases: [
         'Where is the train station?',
@@ -289,5 +296,10 @@ app.post('/api/plan-trip', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
-const PORT = 3001;
+// SPA fallback — serve React for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Tabibito server :${PORT}`));

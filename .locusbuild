@@ -1,18 +1,11 @@
 {
   "services": {
-    "api": {
-      "path": ".",
-      "dockerfile": "Dockerfile.server",
-      "port": 8080,
-      "cpu": 256,
-      "memory": 512
-    },
     "web": {
       "path": ".",
       "dockerfile": "Dockerfile",
       "port": 8080,
-      "cpu": 256,
-      "memory": 512
+      "cpu": 512,
+      "memory": 1024
     }
   }
 }
