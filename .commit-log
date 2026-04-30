@@ -15,3 +15,4 @@
 # feat: add per-country palettes - Japan amber, Kyoto matcha
 # feat: add per-country palettes - Osaka terracotta, France blue
 # feat: add per-country palettes - Morocco orange, India violet
+# feat: implement applyPalette() CSS custom property swap
