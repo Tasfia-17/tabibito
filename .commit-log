@@ -41,3 +41,4 @@
 # feat: add animated progress bar during Browser Use task
 # feat: build Wallet page - Locus balance breakdown
 # feat: add network status indicator with pulse animation
+# feat: build Checkout page - LocusCheckout embedded component
