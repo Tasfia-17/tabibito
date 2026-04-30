@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Load emoji font locally so it works in browser regardless of OS ── */
+@font-face {
+  font-family: 'NotoEmoji';
+  src: url('/NotoColorEmoji.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ── Palette custom properties ── */
+:root {
+  --c1: #F59E0B;
+  --c2: #FDE68A;
+  --c3: #92400E;
+  --bg: #FFFBF0;
+  --ink: #1A1A2E;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', 'NotoEmoji', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  transition: background 0.6s ease;
+}
+
+/* ── Glass — solid fallback so it's always visible ── */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.glass-c1 {
+  background: rgba(245, 158, 11, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(245, 158, 11, 0.3);
+}
+
+/* ── Destination card ── */
+.dest-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+}
+.dest-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(245, 158, 11, 0.25);
+}
+.dest-card.active {
+  box-shadow: 0 0 0 3px var(--c1), 0 20px 50px rgba(245, 158, 11, 0.3);
+}
+
+/* ── Floor reflection ── */
+.scene-floor {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(245,158,11,0.08), transparent);
+  mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 100%, black 40%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ── Diagonal transition sweep ── */
+.tfx-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+.tfx-line {
+  position: absolute;
+  top: -100%;
+  width: 3px;
+  height: 300%;
+  background: var(--c1);
+  opacity: 0;
+  transform: rotate(15deg);
+  transform-origin: top center;
+}
+@keyframes tfx-sweep {
+  0%   { opacity: 0; top: -100%; }
+  20%  { opacity: 0.6; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; top: 120%; }
+}
+.tfx-active .tfx-line { animation: tfx-sweep 0.55s cubic-bezier(.4,0,.2,1) forwards; }
+.tfx-line:nth-child(1) { left: 10%; animation-delay: 0s; }
+.tfx-line:nth-child(2) { left: 25%; animation-delay: 0.04s; }
+.tfx-line:nth-child(3) { left: 40%; animation-delay: 0.08s; }
+.tfx-line:nth-child(4) { left: 55%; animation-delay: 0.12s; }
+.tfx-line:nth-child(5) { left: 70%; animation-delay: 0.16s; }
+.tfx-line:nth-child(6) { left: 85%; animation-delay: 0.20s; }
+
+@keyframes radial-flash {
+  0%   { opacity: 0.5; transform: scale(0); }
+  100% { opacity: 0; transform: scale(3); }
+}
+.tfx-flash {
+  position: fixed;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
+  margin: -150px 0 0 -150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.5), transparent 70%);
+  pointer-events: none;
+  z-index: 99;
+  animation: radial-flash 0.5s ease-out forwards;
+}
+
+/* ── Breathing ── */
+@keyframes breathe {
+  0%,100% { transform: scale(1) translateY(0); }
+  50%      { transform: scale(1.03) translateY(-5px); }
+}
+.breathe { animation: breathe 3.5s ease-in-out infinite; }
+
+/* ── Palette pulse ── */
+@keyframes palette-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+  50%      { box-shadow: 0 0 0 10px rgba(245,158,11,0); }
+}
+.palette-pulse { animation: palette-pulse 2.5s ease-in-out infinite; }
+
+/* ── Spark bar ── */
+.spark-bar {
+  background: var(--c1);
+  border-radius: 2px;
+  transition: height 0.4s ease;
+}
+
+/* ── Edge dot ── */
+.edge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c1);
+}
+
+/* ── Animated gradient background ── */
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-bg {
+  background: linear-gradient(135deg, #FFFBF0, #FEF3C7, #FFF8E7, #FFFBF0);
+  background-size: 400% 400%;
+  animation: bgShift 14s ease infinite;
+}
+
+/* ── Virtual card flip ── */
+.card-scene { perspective: 1000px; }
+.card-inner { transform-style: preserve-3d; transition: transform 0.65s cubic-bezier(.4,0,.2,1); }
+.card-inner.flipped { transform: rotateY(180deg); }
+.card-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.card-back { transform: rotateY(180deg); }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c1); border-radius: 3px; }
+
+/* ── Font helpers ── */
+.font-display { font-family: 'Fredoka One', 'NotoEmoji', cursive !important; }
+.font-body    { font-family: 'Nunito', 'NotoEmoji', sans-serif !important; }
