@@ -42,3 +42,4 @@
 # feat: build Wallet page - Locus balance breakdown
 # feat: add network status indicator with pulse animation
 # feat: build Checkout page - LocusCheckout embedded component
+# feat: add what-you-get breakdown before payment
